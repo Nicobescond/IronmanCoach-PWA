@@ -62,3 +62,4 @@ Modifiez les fichiers, puis augmentez `VERSION` dans [`sw.js`](sw.js) : sans cel
 | `config.js` | URL et clé publique Supabase |
 | `sw.js`, `manifest.webmanifest`, `icons/` | Installation sur l'écran d'accueil et ouverture hors ligne |
 | `supabase/schema.sql` | Tables et règles de sécurité Supabase |
+| `presentation/` | Page de présentation (captures dans `presentation/img/`) |

@@ -1,6 +1,6 @@
 // Service worker : met en cache l'application (pas les donnees) pour
 // l'ouvrir hors ligne. Changer VERSION a chaque publication.
-const VERSION = "ic-pwa-1.0.0";
+const VERSION = "ic-pwa-1.1.0";
 const SHELL = [
   "./", "./index.html", "./styles.css", "./app.js", "./demo.js", "./config.js",
   "./manifest.webmanifest", "./icons/icon-192.png", "./icons/icon-512.png",

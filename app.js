@@ -396,7 +396,9 @@
         h("strong", null, "Application pas encore reliée à Supabase."),
         h("p", { class: "muted small", style: "margin:6px 0 0" }, "Renseignez l'URL et la clé publique dans config.js (voir README).")),
       h("div", { class: "divider" }, "ou"),
-      demoBtn);
+      demoBtn,
+      h("p", { class: "small", style: "text-align:center;margin-top:18px" },
+        h("a", { href: "presentation/", style: "color:var(--accent);font-weight:700" }, "Découvrir l'application →")));
   }
 
   function viewNoData() {

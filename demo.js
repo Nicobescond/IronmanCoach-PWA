@@ -65,12 +65,14 @@ window.IC_DEMO = (function () {
     const goalDate = addDays(today, 150);
     return {
       schema_version: 2, app_version: "démo", generated_at: new Date().toISOString(),
-      profile: { name: "Athlète démo", ftp: 275, threshold_hr: 160 },
+      profile: { name: "Alex", ftp: 275, threshold_hr: 160 },
       today: {
         date: iso(today),
         sessions: planning.filter((s) => s.session_date === iso(today)),
         next_goal: { id: 1, race_date: iso(goalDate), name: "Triathlon L (démo)", race_type: "Triathlon L", priority: "A" },
         latest_weight: { measurement_date: iso(addDays(today, -1)), weight_kg: 72.4 },
+        wellness: { day: iso(today), fatigue: 3, soreness: 2 },
+        latest_feedback: { completed: 1, rpe: 6, feeling: 7, pain: 0 },
         recovery: { is_current: true, resting_hr: 47, hrv_ms: 62, sleep_score: 81, training_readiness: 68 },
         load_summary: { is_current: true, ctl: 64.2, atl: 71.8, tsb: -7.6, atl_ctl_ratio: 1.12, load_7d: 480, load_7d_change_pct: 8, planned_load_7d: 510 },
         indicator_limits: {

@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>IronmanCoach Mobile</title>
+  <meta name="description" content="Le plan d'entraînement triathlon d'IronmanCoach, dans votre poche : séance du jour détaillée, planning de la semaine, charge et récupération.">
+  <meta name="theme-color" content="#0b1520">
+  <meta property="og:title" content="IronmanCoach Mobile">
+  <meta property="og:description" content="Le plan du coach, toujours dans votre poche.">
+  <meta property="og:image" content="img/aujourdhui.webp">
+  <link rel="icon" type="image/png" href="../icons/icon-192.png">
+  <link rel="stylesheet" href="presentation.css">
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="logo" href="#top"><img src="../icons/icon-192.png" alt="" width="30" height="30"> IronmanCoach</a>
+    <nav class="nav-links" aria-label="Sections">
+      <a href="#fonctionnalites">Fonctionnalités</a>
+      <a href="#fonctionnement">Fonctionnement</a>
+      <a href="#installer">Installer</a>
+    </nav>
+    <a class="btn btn-primary btn-sm" href="../?demo">Ouvrir la démo</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="wrap hero-inner">
+      <div class="hero-text">
+        <p class="eyebrow"><span class="dot swim"></span><span class="dot bike"></span><span class="dot run"></span> Application mobile · Triathlon</p>
+        <h1>Le plan du coach,<br>toujours dans votre poche.</h1>
+        <p class="lead">IronmanCoach construit votre préparation sur le PC à partir de vos données Garmin et Strava.
+          L'application mobile vous donne chaque jour <strong>la séance à faire, au watt et à la seconde près</strong>, et votre semaine d'un coup d'œil.</p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="../?demo">Essayer la démo</a>
+          <a class="btn btn-ghost" href="#fonctionnement">Comment ça marche</a>
+        </div>
+        <ul class="hero-points">
+          <li>iPhone et Android</li>
+          <li>Sans passer par un store</li>
+          <li>Fonctionne hors ligne</li>
+        </ul>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <figure class="phone phone-back"><img src="img/planning.webp" alt="" width="390" height="844"></figure>
+        <figure class="phone phone-front"><img src="img/aujourdhui.webp" alt="" width="390" height="844"></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CHIFFRES ============ -->
+  <section class="band">
+    <div class="wrap band-inner">
+      <div class="stat"><strong>4</strong><span>disciplines suivies : natation, vélo, course, renfo</span></div>
+      <div class="stat"><strong>2 min</strong><span>entre le PC et le téléphone, synchronisation automatique</span></div>
+      <div class="stat"><strong>1</strong><span>compte par athlète, chacun ne voit que ses données</span></div>
+    </div>
+  </section>
+
+  <!-- ============ FONCTIONNALITES ============ -->
+  <section id="fonctionnalites" class="section">
+    <div class="wrap">
+      <p class="kicker">Fonctionnalités</p>
+      <h2 class="section-title">Tout ce qu'il faut à l'entraînement, rien de plus.</h2>
+
+      <article class="feature">
+        <figure class="phone"><img src="img/aujourdhui.webp" alt="Écran Aujourd'hui : séance de course au seuil détaillée étape par étape" loading="lazy" width="390" height="844"></figure>
+        <div class="feature-text">
+          <span class="tag run">Aujourd'hui</span>
+          <h3>La séance du jour, prête à exécuter</h3>
+          <p>Chaque séance est découpée en étapes claires, avec la cible qui compte pour la discipline.</p>
+          <ul class="checks">
+            <li>Durées, répétitions et récupérations : <em>3 × 8 min, récup 2 min</em></li>
+            <li>Cibles en fréquence cardiaque, watts ou allure (/km, /100 m)</li>
+            <li>Objectif, consignes du coach et plan de nutrition</li>
+            <li>Compte à rebours jusqu'à la course objectif</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="feature reverse">
+        <figure class="phone"><img src="img/planning.webp" alt="Écran Planning : la semaine jour par jour avec le volume par sport" loading="lazy" width="390" height="844"></figure>
+        <div class="feature-text">
+          <span class="tag bike">Planning</span>
+          <h3>Toute la semaine d'un coup d'œil</h3>
+          <p>Le plan complet publié par le coach, semaine après semaine, jusqu'au jour J.</p>
+          <ul class="checks">
+            <li>Volume total et par discipline, en un regard</li>
+            <li>Séances clés, facultatives et déjà réalisées repérées</li>
+            <li>Navigation de semaine en semaine sur tout le cycle</li>
+            <li>Détail de chaque séance d'un simple toucher</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="feature">
+        <figure class="phone"><img src="img/deplacer.webp" alt="Feuille Déplacer la séance : choix rapide d'un autre jour" loading="lazy" width="390" height="844"></figure>
+        <div class="feature-text">
+          <span class="tag swim">Imprévus</span>
+          <h3>Un imprévu ? Déplacez la séance.</h3>
+          <p>Réunion qui déborde, météo capricieuse : choisissez un autre jour en deux touches.</p>
+          <ul class="checks">
+            <li>Choix rapide de la veille ou des jours suivants</li>
+            <li>Le PC applique le changement à sa synchronisation suivante</li>
+            <li>Le coach garde la main : charge et contenu restent cohérents</li>
+            <li>Annulation possible tant que le PC ne l'a pas appliqué</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="feature reverse">
+        <figure class="phone"><img src="img/charge.webp" alt="Indicateurs de charge d'entraînement et de récupération avec leurs seuils" loading="lazy" width="390" height="844"></figure>
+        <div class="feature-text">
+          <span class="tag str">Forme</span>
+          <h3>Charge et récupération sous contrôle</h3>
+          <p>Les indicateurs calculés par le moteur du coach, avec leurs seuils d'alerte expliqués.</p>
+          <ul class="checks">
+            <li>Forme (CTL), fraîcheur (TSB), ratio ATL/CTL, charge 7 jours</li>
+            <li>FC de repos, VFC et disponibilité issues de Garmin</li>
+            <li>Code couleur : correct, vigilance, alerte</li>
+            <li>Ressenti, fatigue et douleur pris en compte</li>
+          </ul>
+        </div>
+      </article>
+
+      <div class="duo">
+        <figure class="phone small"><img src="img/sombre.webp" alt="L'application en mode sombre" loading="lazy" width="390" height="844"></figure>
+        <div class="duo-text">
+          <h3>Pensée pour le téléphone</h3>
+          <ul class="checks">
+            <li><strong>Mode sombre</strong> automatique, lisible au petit matin comme à la piscine</li>
+            <li><strong>Icône sur l'écran d'accueil</strong>, plein écran, comme une application du store</li>
+            <li><strong>Hors ligne</strong> : les dernières données restent consultables sans réseau</li>
+            <li><strong>Légère</strong> : moins de 100 Ko, aucune publicité, aucun traceur</li>
+          </ul>
+        </div>
+        <figure class="phone small"><img src="img/connexion.webp" alt="Écran de connexion de l'application" loading="lazy" width="390" height="844"></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FONCTIONNEMENT ============ -->
+  <section id="fonctionnement" class="section alt">
+    <div class="wrap">
+      <p class="kicker">Fonctionnement</p>
+      <h2 class="section-title">Le PC calcule, le téléphone affiche.</h2>
+      <p class="section-lead">Toute l'intelligence reste dans IronmanCoach sur le PC. L'application mobile en est l'écran de poche, toujours à jour.</p>
+
+      <ol class="flow">
+        <li class="flow-step">
+          <div class="flow-icons"><span class="pill">Garmin</span><span class="pill">Strava</span></div>
+          <h3>Vos données</h3>
+          <p>Activités, FC de repos, VFC et sommeil arrivent de Garmin Connect toutes les 5 min. L'archive Strava complète l'historique.</p>
+        </li>
+        <li class="flow-arrow" aria-hidden="true"></li>
+        <li class="flow-step highlight">
+          <div class="flow-icons"><span class="pill strong">PC · IronmanCoach</span></div>
+          <h3>Le moteur du coach</h3>
+          <p>Il calcule la charge, construit le plan, adapte les séances selon la fatigue et envoie les séances sur la montre.</p>
+        </li>
+        <li class="flow-arrow" aria-hidden="true"></li>
+        <li class="flow-step">
+          <div class="flow-icons"><span class="pill">Serveur sécurisé</span></div>
+          <h3>La synchronisation</h3>
+          <p>Toutes les 2 min, le PC dépose une photo de votre plan. Chaque athlète ne peut lire que la sienne.</p>
+        </li>
+        <li class="flow-arrow" aria-hidden="true"></li>
+        <li class="flow-step">
+          <div class="flow-icons"><span class="pill">Téléphone</span></div>
+          <h3>L'application</h3>
+          <p>Elle affiche la séance du jour et le planning, et renvoie vos déplacements de séance au PC.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============ INSTALLER ============ -->
+  <section id="installer" class="section">
+    <div class="wrap">
+      <p class="kicker">Installer</p>
+      <h2 class="section-title">Sur l'écran d'accueil en 30 secondes.</h2>
+      <div class="install">
+        <div class="install-card">
+          <h3>iPhone</h3>
+          <ol>
+            <li>Ouvrez le lien dans <strong>Safari</strong></li>
+            <li>Touchez <strong>Partager</strong> (carré avec une flèche)</li>
+            <li>Choisissez <strong>Sur l'écran d'accueil</strong></li>
+          </ol>
+        </div>
+        <div class="install-card">
+          <h3>Android</h3>
+          <ol>
+            <li>Ouvrez le lien dans <strong>Chrome</strong></li>
+            <li>Touchez le menu <strong>⋮</strong></li>
+            <li>Choisissez <strong>Installer l'application</strong></li>
+          </ol>
+        </div>
+        <div class="install-card qr">
+          <img src="img/qr-demo.png" alt="QR code vers la démonstration" width="150" height="150" loading="lazy">
+          <p>Scannez pour ouvrir la démo sur votre téléphone</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONFIDENTIALITE ============ -->
+  <section class="section alt">
+    <div class="wrap privacy">
+      <div>
+        <p class="kicker">Confidentialité</p>
+        <h2 class="section-title">Vos données restent les vôtres.</h2>
+      </div>
+      <ul class="checks two-col">
+        <li>Un compte par athlète : chacun ne voit que son propre plan</li>
+        <li>Les identifiants Garmin ne quittent jamais le PC</li>
+        <li>Les fichiers d'activité bruts restent sur le PC</li>
+        <li>Aucune publicité, aucun outil de suivi</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ CTA ============ -->
+  <section class="cta">
+    <div class="wrap cta-inner">
+      <h2>Envie de voir à quoi ressemble votre semaine ?</h2>
+      <p>La démonstration utilise des données fictives, calées sur la date du jour.</p>
+      <a class="btn btn-primary btn-lg" href="../?demo">Ouvrir la démo</a>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap footer-inner">
+    <span><img src="../icons/icon-192.png" alt="" width="20" height="20"> IronmanCoach Mobile</span>
+    <span>Projet personnel · Captures réalisées avec des données de démonstration</span>
+  </div>
+</footer>
+
+</body>
+</html>

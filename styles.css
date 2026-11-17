@@ -195,6 +195,7 @@ main { max-width: 560px; margin: 0 auto; padding: 16px; outline: none; }
 
 /* ---- Indicateurs ---- */
 .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.grid2 > .card + .card { margin-top: 0; }
 .metric { padding: 12px; }
 .metric .label { display: block; }
 .metric-value { font-size: 24px; font-weight: 800; line-height: 1.2; margin-top: 4px; font-variant-numeric: tabular-nums; }
