@@ -133,6 +133,26 @@
   const SPORT_LABEL = { swim: "Natation", bike: "Vélo", run: "Course", str: "Renforcement", other: "Autre" };
   const INTENSITY_LABEL = { warmup: "Échauffement", cooldown: "Retour au calme", recovery: "Récupération", rest: "Repos" };
 
+  // Photos d'ambiance (libres de droits, voir assets/photos/credits.json).
+  const PHOTOS = {
+    swim: [{ src: "assets/photos/swim.webp", pos: "50% 45%" }],
+    bike: [{ src: "assets/photos/bike.webp", pos: "62% 55%" }, { src: "assets/photos/bike-group.webp", pos: "50% 55%" }],
+    run: [{ src: "assets/photos/run.webp", pos: "72% 45%" }],
+    str: [{ src: "assets/photos/strength.webp", pos: "38% 30%" }],
+    rest: [{ src: "assets/photos/rest.webp", pos: "50% 55%" }],
+  };
+  function photoFor(key, seed = 0) {
+    const list = PHOTOS[key];
+    return list ? list[Math.abs(num(seed) || 0) % list.length] : null;
+  }
+  function photo(key, seed, cls, ...overlay) {
+    const p = photoFor(key, seed);
+    if (!p) return null;
+    return h("div", { class: "photo " + (cls || "") },
+      h("img", { src: p.src, alt: "", "aria-hidden": "true", loading: "lazy", decoding: "async", style: `object-position:${p.pos}` }),
+      overlay.length ? h("div", { class: "photo-overlay" }, overlay) : null);
+  }
+
   const isDone = (s) => num(s.feedback && s.feedback.completed) === 1 || /done|complet|r[ée]alis/i.test(s.status || "");
   const isCancelled = (s) => /cancel|annul|skip/i.test(s.status || "");
 
@@ -390,6 +410,7 @@
     }, "Essayer avec des données fictives");
 
     return h("section", { class: "login" },
+      photo("swim", 0, "login-hero"),
       h("h1", null, "Bienvenue"),
       h("p", { class: "muted" }, "Vos séances et votre planning, synchronisés depuis IronmanCoach sur votre PC."),
       CONFIGURED ? form : h("div", { class: "card", style: "margin-top:16px" },
@@ -433,12 +454,15 @@
 
     root.append(h("h2", { class: "section-title" }, name ? `Séances du jour, ${name}` : "Séances du jour"));
     if (today.length) {
-      today.forEach((s) => root.append(sessionCard(s, true)));
+      today.forEach((s) => root.append(sessionCard(s, true, true)));
     } else {
       const next = sessions().find((s) => s.session_date > iso && !isCancelled(s));
-      root.append(h("div", { class: "card empty" }, icon("sun"),
-        h("h2", null, "Repos aujourd'hui"),
-        next ? h("p", { class: "muted" }, `Prochaine séance : ${fmtDayShort.format(parseISO(next.session_date))} — ${next.title || SPORT_LABEL[sportKey(next.sport)]}`) : null));
+      root.append(h("div", { class: "card rest-card" },
+        photo("rest", 0, "rest-photo",
+          h("strong", { class: "overlay-title" }, "Repos aujourd'hui"),
+          h("span", { class: "overlay-sub" }, "La récupération fait partie du plan.")),
+        next ? h("p", { class: "rest-next" }, h("span", { class: "label" }, "Prochaine séance "), h("br"),
+          `${cap(fmtDayShort.format(parseISO(next.session_date)))} — ${next.title || SPORT_LABEL[sportKey(next.sport)]}`) : null));
     }
 
     root.append(loadSection(t), recoverySection(t));
@@ -497,7 +521,7 @@
   }
 
   // ---- Carte séance
-  function sessionCard(s, startOpen = false) {
+  function sessionCard(s, startOpen = false, withCover = false) {
     const sid = num(s.id);
     const sk = sportKey(s.sport);
     const key = String(sid);
@@ -515,7 +539,12 @@
     if (err) badges.push(h("span", { class: "badge bad" }, "Déplacement refusé"));
 
     const meta = [SPORT_LABEL[sk], fmtMin(s.duration_min)].filter(Boolean);
-    const card = h("article", { class: `card session sport-${sk}`, "open-detail": isOpen || null });
+    const card = h("article", { class: `card session sport-${sk}` + (withCover ? " with-cover" : ""), "open-detail": isOpen || null });
+    if (withCover) {
+      const cover = photo(sk, sid, "cover", h("span", { class: "cover-chip" }, SPORT_LABEL[sk]),
+        num(s.duration_min) ? h("span", { class: "cover-dur" }, fmtMin(s.duration_min)) : null);
+      if (cover) card.append(cover);
+    }
     const head = h("button", {
       class: "session-head", type: "button", "aria-expanded": String(isOpen),
       onclick: () => {
@@ -633,6 +662,8 @@
       h("p", { class: "muted" }, state.demo ? "Mode démonstration (données fictives)." : (state.session && state.session.email) || ""),
       at ? h("p", { class: "small" }, `Dernières données du PC : ${relTime(at)}.`) : null,
       state.snap && state.snap.app_version ? h("p", { class: "small muted" }, `IronmanCoach ${state.snap.app_version}`) : null,
+      h("p", { class: "small" }, h("a", { href: "presentation/", class: "link" }, "Présentation de l'application"),
+        " · ", h("button", { type: "button", class: "link", onclick: openCredits }, "Crédits photos")),
       h("div", { class: "actions" },
         h("button", { class: "btn", type: "button", onclick: () => dlg.close() }, "Fermer"),
         h("button", {
@@ -644,6 +675,23 @@
           },
         }, state.demo ? "Quitter la démo" : "Se déconnecter")));
     dlg.showModal();
+  }
+
+  async function openCredits() {
+    const body = $("#sheet-body");
+    const list = h("ul", { class: "credits" }, h("li", { class: "muted" }, "Chargement…"));
+    body.replaceChildren(h("h2", { id: "sheet-title" }, "Crédits photos"),
+      h("p", { class: "muted small" }, "Photos libres de droits issues de Wikimedia Commons."), list,
+      h("div", { class: "actions" }, h("button", { class: "btn", type: "button", onclick: () => $("#sheet").close() }, "Fermer")));
+    try {
+      const res = await fetch("assets/photos/credits.json");
+      const items = await res.json();
+      list.replaceChildren(...items.map((c) => h("li", null,
+        h("strong", null, ({ swim: "Natation", bike: "Vélo", "bike-group": "Vélo (groupe)", run: "Course", strength: "Renforcement", rest: "Repos" })[String(c.file).split("/").pop().replace(".webp", "")] || "Photo"),
+        " — ", c.author || "Auteur inconnu",
+        h("br"), h("span", { class: "muted" }, c.license || ""), " · ",
+        /^https:\/\/commons\.wikimedia\.org\//.test(c.source) ? h("a", { href: c.source, target: "_blank", rel: "noopener", class: "link" }, "source") : null)));
+    } catch { list.replaceChildren(h("li", { class: "muted" }, "Crédits indisponibles hors ligne.")); }
   }
 
   // ---- Planning
@@ -682,7 +730,13 @@
       ["swim", "bike", "run", "str", "other"].filter((k) => bySport[k]).map((k) =>
         h("span", { class: `badge sport-${k}`, style: "background:var(--sport-bg);color:var(--sport)" }, `${SPORT_LABEL[k]} ${fmtMin(bySport[k])}`)));
 
-    const root = h("section", null, h("h1", { class: "page-title" }, "Planning"), freshness(), nav, summary);
+    // Bannière : photo de la discipline dominante de la semaine.
+    const main = Object.entries(bySport).filter(([k]) => PHOTOS[k]).sort((a, b) => b[1] - a[1])[0];
+    const banner = photo(main ? main[0] : "rest", monday.getDate(), "week-hero",
+      h("span", { class: "overlay-kicker" }, cycle != null ? `${label} • S${cycle}` : label),
+      h("strong", { class: "overlay-title" }, total ? fmtMin(total) : "Semaine de repos"),
+      h("span", { class: "overlay-sub" }, total ? `d'entraînement prévu • ${week.length} séance${week.length > 1 ? "s" : ""}` : "Aucune séance prévue"));
+    const root = h("section", null, h("h1", { class: "page-title" }, "Planning"), freshness(), banner, nav, summary);
     const tIso = todayIso();
     days.forEach((iso) => {
       const list = week.filter((s) => String(s.session_date).slice(0, 10) === iso);

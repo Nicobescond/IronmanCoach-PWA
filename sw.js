@@ -1,10 +1,13 @@
 // Service worker : met en cache l'application (pas les donnees) pour
 // l'ouvrir hors ligne. Changer VERSION a chaque publication.
-const VERSION = "ic-pwa-1.1.0";
+const VERSION = "ic-pwa-1.2.0";
 const SHELL = [
   "./", "./index.html", "./styles.css", "./app.js", "./demo.js", "./config.js",
   "./manifest.webmanifest", "./icons/icon-192.png", "./icons/icon-512.png",
   "./icons/apple-touch-icon.png",
+  "./assets/photos/swim.webp", "./assets/photos/bike.webp", "./assets/photos/bike-group.webp",
+  "./assets/photos/run.webp", "./assets/photos/strength.webp", "./assets/photos/rest.webp",
+  "./assets/photos/credits.json",
 ];
 
 self.addEventListener("install", (event) => {
